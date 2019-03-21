@@ -146,7 +146,7 @@ extraContainers: |
 persistence:
   enabled: false
   initChownData: true
-  # storageClassName: default
+  storageClassName: portworx-sc
   accessModes:
     - ReadWriteOnce
   size: 10Gi
@@ -208,15 +208,15 @@ plugins: []
 ## Configure grafana datasources
 ## ref: http://docs.grafana.org/administration/provisioning/#datasources
 ##
-datasources: {}
-#  datasources.yaml:
-#    apiVersion: 1
-#    datasources:
-#    - name: Prometheus
-#      type: prometheus
-#      url: http://prometheus-prometheus-server
-#      access: proxy
-#      isDefault: true
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      url: http://prometheus-server
+      access: proxy
+      isDefault: true
 
 ## Configure notifiers
 ## ref: http://docs.grafana.org/administration/provisioning/#alert-notification-channels
@@ -260,22 +260,16 @@ dashboardProviders: {}
 ##
 ## dashboards per provider, use provider name as key.
 ##
-dashboards: {}
-  # default:
-  #   some-dashboard:
-  #     json: |
-  #       $RAW_JSON
-  #   custom-dashboard:
-  #     file: dashboards/custom-dashboard.json
-  #   prometheus-stats:
-  #     gnetId: 2
-  #     revision: 2
-  #     datasource: Prometheus
-  #   local-dashboard:
-  #     url: https://example.com/repository/test.json
-  #   local-dashboard-base64:
-  #     url: https://example.com/repository/test-b64.json
-  #     b64content: true
+dashboards:
+  default:
+    portworx-cluster-dashboard:
+      file: dashboards/px-cluster-dashboard.json
+    portworx-volume-dashboard:
+      file: dashboards/px-volume-dashboard.json
+    portworx-node-dashboard:
+      file: dashboards/px-node-dashboard.json
+    cp-kafka-dashboard:
+      file: dashboards/cp-kafka-dashboard.json
 
 ## Reference to external ConfigMap per provider. Use provider name as key and ConfiMap name as value.
 ## A provider dashboards must be defined either by external ConfigMaps or in values.yaml, not in both.
