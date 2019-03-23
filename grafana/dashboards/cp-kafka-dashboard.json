@@ -2450,7 +2450,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": "Prometheus",
       "description": "Total number of bytes consumed.",
       "fill": 1,
       "gridPos": {
@@ -2537,7 +2537,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": "Prometheus",
       "description": "Messages consumed per second.",
       "fill": 1,
       "gridPos": {
@@ -2621,7 +2621,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": "Prometheus",
       "description": "Messages produced per second.",
       "fill": 1,
       "gridPos": {
@@ -2705,7 +2705,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": "Prometheus",
       "description": "Number of active queries.",
       "fill": 1,
       "gridPos": {
@@ -2789,7 +2789,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": "Prometheus",
       "description": "Number of idle queries.",
       "fill": 1,
       "gridPos": {
@@ -2873,7 +2873,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": "Prometheus",
       "description": "Number of persistent queries.",
       "fill": 1,
       "gridPos": {
@@ -4357,7 +4357,7 @@
       {
         "allValue": ".+",
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": "Prometheus",
         "hide": 0,
         "includeAll": true,
         "label": "Release",
