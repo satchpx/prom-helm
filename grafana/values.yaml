@@ -270,6 +270,12 @@ dashboards:
       file: dashboards/px-node-dashboard.json
     cp-kafka-dashboard:
       file: dashboards/cp-kafka-dashboard.json
+    k8s-cluster-dashboard:
+      file: dashboards/k8s-cluster-summary_rev1.json
+    spark-performance-dashboard:
+      file: dashboards/spark-performance-metrics_rev4.json
+    elasticsearch-cluster-dashboard:
+      file: dashboards/elasticsearch_rev4.json
     prometheus-stats:
       gnetId: 1
       revision: 1
