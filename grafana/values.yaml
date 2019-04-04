@@ -144,7 +144,7 @@ extraContainers: |
 ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
 ##
 persistence:
-  enabled: false
+  enabled: true
   initChownData: true
   storageClassName: portworx-sc
   accessModes:
