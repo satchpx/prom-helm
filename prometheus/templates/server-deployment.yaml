@@ -125,10 +125,6 @@ spec:
           volumeMounts:
             - name: config-volume
               mountPath: /etc/config
-            - name: config-alert-rules
-              mountPath: /etc/config/alerts
-              configMap: prometheus-alerts
-              readOnly: true
             - name: storage-volume
               mountPath: {{ .Values.server.persistentVolume.mountPath }}
               subPath: "{{ .Values.server.persistentVolume.subPath }}"
@@ -182,9 +178,6 @@ spec:
         - name: config-volume
           configMap:
             name: {{ if .Values.server.configMapOverrideName }}{{ .Release.Name }}-{{ .Values.server.configMapOverrideName }}{{- else }}{{ template "prometheus.server.fullname" . }}{{- end }}
-        - name: config-alert-rules
-          configMap:
-            name: prometheus-alerts
         - name: storage-volume
         {{- if .Values.server.persistentVolume.enabled }}
           persistentVolumeClaim:
