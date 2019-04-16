@@ -246,11 +246,7 @@ alertmanager:
 ## Ref: https://github.com/jimmidyson/configmap-reload
 ##
 configmapReload:
-  extraConfigmapMounts:
-    - name: prometheus-alerts
-      mountPath: /etc/alerts
-      configMap: prometheus-alerts
-      readOnly: true
+  name: configmap-reload
 
   ## configmap-reload container image
   ##
@@ -270,12 +266,11 @@ configmapReload:
 
   ## Additional configmap-reload mounts
   ##
-  extraConfigmapMounts: []
-    # - name: prometheus-alerts
-    #   mountPath: /etc/alerts.d
-    #   subPath: ""
-    #   configMap: prometheus-alerts
-    #   readOnly: true
+  extraConfigmapMounts:
+    - name: prometheus-alerts
+      mountPath: /etc/alerts
+      configMap: prometheus-alerts
+      readOnly: true
 
 
   ## configmap-reload resource requests and limits
