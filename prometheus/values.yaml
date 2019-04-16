@@ -965,8 +965,8 @@ serverFiles:
 
   prometheus.yml:
     rule_files:
-      - /etc/config/rules/*.rules
-      - /etc/config/alerts/*.rules
+      - /etc/config/rules/*.yaml
+      - /etc/config/alerts/*.yaml
 
     scrape_configs:
       - job_name: prometheus
