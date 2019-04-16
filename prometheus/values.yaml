@@ -774,7 +774,7 @@ server:
 
   ## Prometheus data retention period (i.e 360h)
   ##
-  retention: ""
+  retention: "720h"
 
 pushgateway:
   ## If false, pushgateway will not be installed
@@ -945,10 +945,6 @@ alertmanagerFiles:
 ## Prometheus server ConfigMap entries
 ##
 serverFiles:
-  prometheus.yml:
-    rule_files:
-      - /etc/config/rules/*.yaml
-      - /etc/config/alerts/*.yaml
 
   ## Alerts configuration
   ## Ref: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
@@ -969,8 +965,8 @@ serverFiles:
 
   prometheus.yml:
     rule_files:
-      - /etc/config/rules
-      - /etc/config/alerts
+      - /etc/config/rules/*.rules
+      - /etc/config/alerts/*.rules
 
     scrape_configs:
       - job_name: prometheus
