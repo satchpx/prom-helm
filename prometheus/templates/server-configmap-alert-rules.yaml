@@ -1,6 +1,7 @@
 apiVersion: v1
 data:
   alert-rules.yaml: |-
+    {{`
     groups:
     - name: cpu
       rules:
@@ -130,7 +131,7 @@ data:
         annotations:
           summary: "Portworx Quorum Unhealthy."
           description: "Portworx cluster Quorum Unhealthy for more than 5 minutes."
-
+        `}}
 kind: ConfigMap
 metadata:
   creationTimestamp: null
