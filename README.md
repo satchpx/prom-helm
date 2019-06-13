@@ -14,8 +14,8 @@ The helm charts are from https://github.com/helm/charts/tree/master/stable
 ```
 git clone https://github.com/satchpx/prom-helm.git
 cd prom-helm/
-helm install --name prometheus --namespace monitoring prometheus --set server.persistentVolume.storageClass=<portworx-storageClassName>
-helm install --name grafana --namespace monitoring grafana --set persistence.enabled=true,persistence.storageClassName=<portworx-storageClassName>
+helm install --name prometheus --namespace monitoring prometheus --set server.persistentVolume.storageClass=<portworx-storageClassName>,server.shedulerName=stork
+helm install --name grafana --namespace monitoring grafana --set persistence.enabled=true,persistence.storageClassName=<portworx-storageClassName>,schedulerName=stork
 ```
 The above is configured already to add prometheus as the datasource for grafana.
 
