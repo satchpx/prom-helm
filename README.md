@@ -10,6 +10,27 @@ grafana
 The helm charts are from https://github.com/helm/charts/tree/master/stable
 
 
+## To install portworx:
+```
+https://docs.portworx.com/portworx-install-with-kubernetes/
+```
+
+##  After installing portworx, create a storageClass to be used
+```
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: px-high-rf2
+provisioner: kubernetes.io/portworx-volume
+parameters:
+  fs: "ext4"
+  block_size: "4k"
+  shared: "false"
+  repl: "2"
+  snap_interval:   "0"
+  priority_io:  "high"
+```
+
 ## To install the chart:
 ```
 git clone https://github.com/satchpx/prom-helm.git
