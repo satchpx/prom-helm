@@ -136,4 +136,3 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   name: prometheus-alerts
-  namespace: monitoring
