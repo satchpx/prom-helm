@@ -17,6 +17,7 @@ server:
       - ReadWriteOnce
     mountPath: /data
     size: 40Gi
+    storageClass: px-db-rf2-sc
 
 ## Prometheus server ConfigMap entries
 ##
