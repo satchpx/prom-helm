@@ -27,3 +27,11 @@ serverFiles:
       - /etc/config/rules/*.yaml
       - /etc/config/alerts/*.yaml
 
+alertmanager:
+  persistentVolume:
+    enabled: true
+    accessModes:
+      - ReadWriteOnce
+    mountPath: /data
+    size: 2Gi
+    storageClass: "px-db-rf2-sc"
