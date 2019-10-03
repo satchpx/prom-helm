@@ -1,6 +1,6 @@
-{{ if (or (not .Values.persistence.enabled) (eq .Values.persistence.type "pvc")) }}
+{{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) (eq .Values.persistence.type "statefulset")}}
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ template "grafana.fullname" . }}
   namespace: {{ .Release.Namespace }}
@@ -9,9 +9,6 @@ metadata:
     chart: {{ template "grafana.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-{{- if .Values.labels }}
-{{ toYaml .Values.labels | indent 4 }}
-{{- end }}
 {{- with .Values.annotations }}
   annotations:
 {{ toYaml . | indent 4 }}
@@ -22,18 +19,11 @@ spec:
     matchLabels:
       app: {{ template "grafana.name" . }}
       release: {{ .Release.Name }}
-{{- with .Values.deploymentStrategy }}
-  strategy:
-{{ toYaml . | trim | indent 4 }}
-{{- end }}
   template:
     metadata:
       labels:
         app: {{ template "grafana.name" . }}
         release: {{ .Release.Name }}
-{{- with .Values.podLabels }}
-{{ toYaml . | indent 8 }}
-{{- end }}
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
         checksum/dashboards-json-config: {{ include (print $.Template.BasePath "/dashboards-json-configmap.yaml") . | sha256sum }}
@@ -46,4 +36,13 @@ spec:
 {{- end }}
     spec:
       {{- include "grafana.pod" . | nindent 6 }}
+  volumeClaimTemplates:
+  - metadata:
+      name: storage
+    spec:
+      accessModes: {{ .Values.persistence.accessModes }}
+      storageClassName: {{ .Values.persistence.storageClassName }}
+      resources:
+        requests:
+          storage: {{ .Values.persistence.size }} 
 {{- end }}
