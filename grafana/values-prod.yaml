@@ -2,7 +2,7 @@
 persistence:
   enabled: true
   initChownData: true
-  storageClassName: portworx-sc
+  storageClassName: px-db-rf2-sc
   accessModes:
     - ReadWriteOnce
   size: 10Gi
