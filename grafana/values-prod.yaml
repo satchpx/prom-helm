@@ -1,4 +1,8 @@
-
+image:
+  repository: grafana/grafana
+  tag: 6.3.5
+  pullPolicy: IfNotPresent
+  
 persistence:
   enabled: true
   initChownData: true

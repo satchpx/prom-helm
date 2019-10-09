@@ -36,7 +36,7 @@ parameters:
 git clone https://github.com/satchpx/prom-helm.git
 cd prom-helm/
 helm install --name prometheus --namespace monitoring prometheus --values=prometheus/values-prod.yaml --set server.persistentVolume.storageClass=<portworx-storageClassName>
-helm install --name grafana --namespace monitoring grafana --values=grafana/values-prod.yaml --set persistence.storageClassName=<portworx-storageClassName>
+helm install --name grafana --namespace monitoring grafana --values=grafana/values-prod.yaml --set persistence.storageClassName=<portworx-storageClassName>,alertmanager.persistentVolume.storageClass=<portworx-storageClassName>
 ```
 The above is configured already to add prometheus as the datasource for grafana.
 

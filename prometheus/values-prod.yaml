@@ -1,4 +1,8 @@
 server:
+  image:
+    repository: prom/prometheus
+    tag: v2.11.1
+    pullPolicy: IfNotPresent
   global:
     scrape_interval: 30s
     scrape_timeout: 10s
@@ -28,6 +32,10 @@ serverFiles:
       - /etc/config/alerts/*.yaml
 
 alertmanager:
+  image:
+    repository: prom/alertmanager
+    tag: v0.18.0
+    pullPolicy: IfNotPresent
   persistentVolume:
     enabled: true
     accessModes:
@@ -35,3 +43,76 @@ alertmanager:
     mountPath: /data
     size: 2Gi
     storageClass: "px-db-rf2-sc"
+
+configmapReload:
+  ## configmap-reload container name
+  ##
+  name: configmap-reload
+
+  ## configmap-reload container image
+  ##
+  image:
+    repository: jimmidyson/configmap-reload
+    tag: v0.2.2
+    pullPolicy: IfNotPresent
+
+kubeStateMetrics:
+  ## If false, kube-state-metrics will not be installed
+  ##
+  enabled: true
+
+  ## kube-state-metrics container name
+  ##
+  name: kube-state-metrics
+
+  ## kube-state-metrics container image
+  ##
+  image:
+    repository: quay.io/coreos/kube-state-metrics
+    tag: v1.6.0
+    pullPolicy: IfNotPresent
+
+nodeExporter:
+  ## If false, node-exporter will not be installed
+  ##
+  enabled: true
+
+  ## If true, node-exporter pods share the host network namespace
+  ##
+  hostNetwork: true
+
+  ## If true, node-exporter pods share the host PID namespace
+  ##
+  hostPID: true
+
+  ## node-exporter container name
+  ##
+  name: node-exporter
+
+  ## node-exporter container image
+  ##
+  image:
+    repository: prom/node-exporter
+    tag: v0.18.0
+    pullPolicy: IfNotPresent
+
+pushgateway:
+  ## If false, pushgateway will not be installed
+  ##
+  enabled: true
+
+  ## Use an alternate scheduler, e.g. "stork".
+  ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
+  ##
+  # schedulerName:
+
+  ## pushgateway container name
+  ##
+  name: pushgateway
+
+  ## pushgateway container image
+  ##
+  image:
+    repository: prom/pushgateway
+    tag: v0.8.0
+    pullPolicy: IfNotPresent
